@@ -1,0 +1,4 @@
+seedApp
+.session('errorService', function () {
+	
+});

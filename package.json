@@ -1,0 +1,27 @@
+{
+  "name": "Name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "4.*",
+    "mongoose": "3.*",
+    "mongoose-session": "0.*",
+    "body-parser": "1.*",
+    "express-session": "1.*",
+    "cookie-parser": "1.*",
+    "passport": "0.*",
+    "passport-google": "0.*",
+    "passport-twitter": "1.*",
+    "passport-facebook": "1.*",
+    "node-uuid": "1.*"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-concat": "*"
+  }
+}
