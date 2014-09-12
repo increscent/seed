@@ -13,25 +13,26 @@ module.exports = function (app) {
 		process_user(req, res);
 	});
 	// end session/logout
-	app.post('session/end', function (req, res) {
+	app.post('/session/end', function (req, res) {
 		// end passport session
 		req.logout();
 		// end mongo session
 		req.session.destroy( function(err) {
-			res.end();
+			res.send();
 		});
 	});
 	// get session
-	app.post('session/get', function (req, res) {
-		res.send((req.session.id)? true : false);
+	app.post('/session/get', function (req, res) {
+		console.log(req.session.user_id);
+		res.send((req.session.user_id)? true : false);
 	});
 
 	var process_user = function (req, res) {
 		var newUser = new app.User(app.models);
-		newUser.findUser(req.user.provider_id, function (user) {
+		newUser.findUser(req.user.email, req.user.provider_id, function (user) {
 			if (user) {
 				// user already exists
-				req.session.id = user.id;
+				req.session.user_id = user.id;
 				res.redirect('/');
 			} else {
 				// create a new user
@@ -40,7 +41,7 @@ module.exports = function (app) {
 					if (result.error) {
 						res.redirect('/login/error');
 					} else {
-						req.session.id = result.id;
+						req.session.user_id = result.id;
 						res.redirect('/signup');
 					}
 				});

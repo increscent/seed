@@ -3,10 +3,16 @@ function User(mongoose_models) {
 	this.mongoose_models = mongoose_models;
 }
 
-User.prototype.findUser = function(provider_id, callback) {
-	this.mongoose_models.users.findOne({provider_id: provider_id}, function (err, user) {
-		return (user)? callback(user) : callback(null);
-	});
+User.prototype.findUser = function(email, provider_id, callback) {
+	if (email) {
+		this.mongoose_models.users.findOne({email: email}, function (err, user) {
+			return (user)? callback(user) : callback(null);
+		});
+	} else {
+		this.mongoose_models.users.findOne({provider_id: provider_id}, function (err, user) {
+			return (user)? callback(user) : callback(null);
+		});
+	}
 };
 
 User.prototype.getUser = function(id, callback) {

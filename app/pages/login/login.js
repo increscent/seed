@@ -6,6 +6,8 @@ seedApp
 		controller: 'loginController'
 	});
 })
-
-.controller('loginController', function ($scope, $location) {
+.controller('loginController', function ($scope, $location, sessionService) {
+	sessionService.getSession( function (result) {
+		console.log(result);
+	});
 });

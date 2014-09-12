@@ -6,14 +6,14 @@ module.exports = function(grunt) {
   grunt.initConfig({
     watch: {
       html: {
-        files: ['app/**']
+        files: ['app/pages/**/*.html']
       },
       js: {
         files: ['app/**/*.js', '!app/scripts/main.js'],
         tasks: 'concat'
       },
       less: {
-        files: ['app/**/*.less'],
+        files: ['app/**/*.less', '!app/styles/concat.less'],
         tasks: ['concat', 'less']
       },
       options: {
