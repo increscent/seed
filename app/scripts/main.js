@@ -3,13 +3,9 @@ var seedApp = angular.module('seedApp', ['ngRoute']);
 seedApp
 .config( function ($locationProvider, $routeProvider) {
 	$routeProvider
-	.when('/logout', {
-		templateUrl: 'pages/logout/logout.tpl.html',
-		controller: 'logoutController'
+	.otherwise({
+		redirectTo: '/login'
 	});
-	// .when('/', {
-	// 	redirectTo: '/login'
-	// });
 
 	$locationProvider.html5Mode(true);
 });
@@ -47,12 +43,6 @@ seedApp
 			return callback(!result.error && result);
 		});
 	};
-
-	this.endSession = function (callback) {
-		httpService.post('/session/end', {}, '', function (result) {
-			return callback();
-		});
-	};
 });
 seedApp
 .config( function ($routeProvider) {
@@ -64,19 +54,6 @@ seedApp
 })
 .controller('loginController', function ($scope, $location, sessionService) {
 	sessionService.getSession( function (result) {
-		console.log(result);
-	});
-});
-seedApp
-.config( function ($routeProvider) {
-	$routeProvider
-	.when('/logout', {
-		templateUrl: 'pages/logout/logout.tpl.html',
-		controller: 'logoutController'
-	});
-})
-.controller('logoutController', function ($scope, $location, sessionService) {
-	sessionService.endSession( function () {
-		// $location.path('/login');
+		$scope.session = result;
 	});
 });

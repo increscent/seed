@@ -5,10 +5,4 @@ seedApp
 			return callback(!result.error && result);
 		});
 	};
-
-	this.endSession = function (callback) {
-		httpService.post('/session/end', {}, '', function (result) {
-			return callback();
-		});
-	};
 });

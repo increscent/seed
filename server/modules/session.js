@@ -13,17 +13,16 @@ module.exports = function (app) {
 		process_user(req, res);
 	});
 	// end session/logout
-	app.post('/session/end', function (req, res) {
+	app.get('/session/end', function (req, res) {
 		// end passport session
 		req.logout();
 		// end mongo session
 		req.session.destroy( function(err) {
-			res.send();
+			res.redirect('/');
 		});
 	});
 	// get session
 	app.post('/session/get', function (req, res) {
-		console.log(req.session.user_id);
 		res.send((req.session.user_id)? true : false);
 	});
 

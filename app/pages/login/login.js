@@ -8,6 +8,6 @@ seedApp
 })
 .controller('loginController', function ($scope, $location, sessionService) {
 	sessionService.getSession( function (result) {
-		console.log(result);
+		$scope.session = result;
 	});
 });
